@@ -20,4 +20,20 @@ export default {
             }
         }
     },
+    findAll: async () => {
+        try {
+            let categories = await prisma.categories.findMany()
+            return {
+                status: true,
+                message: "get all product thanh cong",
+                data: categories
+            }
+        } catch (err) {
+            console.log("err", err);
+            return {
+                status: false,
+                message: "get all product that bai"
+            }
+        }
+    },
 }

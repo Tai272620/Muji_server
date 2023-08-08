@@ -20,4 +20,22 @@ export default {
             }
         }
     },
+    create: async function (newProduct) {
+        try {
+            const product = await prisma.products.create({
+                data: newProduct
+            })
+            return {
+                status: true,
+                message: "Thêm sản phẩm thành công!",
+                data: product
+            }
+        } catch (err) {
+            console.log("err", err)
+            return {
+                status: false,
+                message: "Lỗi không xác định!"
+            }
+        }
+    },
 }

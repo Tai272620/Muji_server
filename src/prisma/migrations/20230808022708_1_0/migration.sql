@@ -36,8 +36,9 @@ CREATE TABLE `products` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `active` BOOLEAN NOT NULL DEFAULT false,
-    `des` VARCHAR(191) NOT NULL,
+    `desc` VARCHAR(191) NOT NULL,
     `avatar` VARCHAR(191) NOT NULL,
+    `price` DOUBLE NOT NULL,
     `category_id` INTEGER NOT NULL,
 
     UNIQUE INDEX `Products_name_key`(`name`),
