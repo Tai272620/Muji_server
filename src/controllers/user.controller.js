@@ -138,8 +138,13 @@ export default {
         }
     },
     authenToken: async (req, res) => {
-        let decode = jwt.verifyToken(req.body.token)
-        return res.status(200).json(decode)
+        let decode = jwt.verifyToken(req.body.token);
+        if (decode) {
+            let modelRes = await userModel.findById(decode.data.id);
+
+            return res.status(new Date(decode.data.update_at).toDateString() == modelRes.update_at.toDateString() ? 200 : 500).json(decode)
+        }
+        return res.status(500).json(decode);
     },
     changePassword: async (req, res) => {
         try {
@@ -237,5 +242,12 @@ export default {
         }
 
     },
+    // findById: async (req, res) => {
+    //     let update_at = await userModel.findById()
+
+    //     return
+    //     let decode = jwt.verifyToken(req.body.token)
+    //     return res.status(200).json(decode)
+    // }
 }
 
