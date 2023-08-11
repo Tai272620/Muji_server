@@ -19,7 +19,6 @@ export default {
     findAllCategories: async (req, res) => {
         try {
             let modelRes = await categoryModel.findAll()
-            console.log("modelRes", modelRes);
 
             return res.status(modelRes.status ? 200 : 214).json(modelRes)
 

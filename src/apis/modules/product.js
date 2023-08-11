@@ -17,6 +17,7 @@ const productUpload = multer({ storage: imgProductStorage })
 import productController from '../../controllers/product.controller';
 
 router.get("/:id", productController.findById);
-router.post("/", productUpload.array('imgs'), productController.create)
+router.post("/", productUpload.array('imgs'), productController.create);
+router.get("/", productController.findAllProducts);
 
 export default router;

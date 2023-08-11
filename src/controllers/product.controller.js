@@ -4,6 +4,55 @@ import fs from 'fs';
 
 
 export default {
+    // findAllProducts: async (req, res) => {
+    //     try {
+    //         let result = await productModel.findAllProducts();
+
+    //         return res.status(result.status ? 200 : 214).json(result);
+
+    //     } catch (err) {
+    //         return res.status(500).json(
+    //             {
+    //                 message: "Bad request products !"
+    //             }
+    //         )
+    //     }
+    // },
+
+    //search
+    findAllProducts: async function (req, res) {
+
+        try {
+            /* Find by name or des */
+            if (req.query.search) {
+                let modelRes = await productModel.searchByName(req.query.search)
+                console.log("modelRes", modelRes);
+                return res.status(modelRes.status ? 200 : 221).json(modelRes)
+            }
+            /* Find all */
+            let modelRes = await productModel.findMany()
+            return res.status(modelRes.status ? 200 : 221).json(modelRes)
+        } catch (err) {
+            return res.status(500).json({
+                message: "Lỗi không xác định!"
+            })
+        }
+    },
+    findByCategory: async function (req, res) {
+        try {
+            let result = await productModel.findByCategory(parseInt(req.params.category_id));
+
+            return res.status(200).json({
+                message: result.message,
+                data: result.data
+            })
+
+        } catch (err) {
+            return res.status(500).json({
+                message: "Lỗi không xác định!"
+            })
+        }
+    },
     findById: async function (req, res) {
         try {
             let result = await productModel.findById(parseInt(req.params.id));
@@ -21,7 +70,6 @@ export default {
         }
     },
     create: async (req, res) => {
-        // console.log("req.body", req.body);
 
         let productInforFormat = JSON.parse(req.body.product_infor);
 

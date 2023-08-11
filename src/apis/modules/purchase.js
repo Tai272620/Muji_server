@@ -7,5 +7,5 @@ import authencation from "../../middlewares/authencation";
 router.post('/:user_id', authencation.checkToken, purchaseController.addToCart);
 router.get('/:user_id', authencation.checkToken, purchaseController.findCart);
 router.delete('/:product_id', purchaseController.deleteProductFromCart);
-router.put('/:product_id', purchaseController.)
+router.patch('/:user_id', purchaseController.updateCart);
 export default router;
