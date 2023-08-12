@@ -206,5 +206,43 @@ export default {
                 message: "Update Cart failed"
             }
         }
+    },
+    createReceipt: async function (data) {
+        try {
+            let receipt = prisma.receipts.create({
+                data: {
+                    ...data.receiptInfor,
+                    receipt_details: {
+                        create: data.receiptDetails
+                    },
+                }
+            })
+
+            const deleteCartDetail = prisma.cart_details.deleteMany({
+                where: {
+                    cart_id: data.receiptInfor.receipt_code
+                }
+            })
+
+            const deleteCart = prisma.carts.delete({
+                where: {
+                    id: data.receiptInfor.receipt_code,
+                },
+            })
+
+            const transaction = await prisma.$transaction([receipt, deleteCartDetail, deleteCart])
+
+            return {
+                status: true,
+                message: "Ok nhé",
+                data: receipt
+            }
+        } catch (err) {
+            console.log("lỗi createReceipt", err)
+            return {
+                status: false,
+                message: "lỗi createReceipt model"
+            }
+        }
     }
 }
