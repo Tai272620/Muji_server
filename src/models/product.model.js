@@ -18,7 +18,7 @@ export default {
             }
         }
     },
-    findByCategory: async function (category_id) {
+    findByCategoryId: async function (category_id) {
         try {
             let products = await prisma.products.findMany({
                 where: {

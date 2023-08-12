@@ -25,14 +25,14 @@ export default {
             let categories = await prisma.categories.findMany()
             return {
                 status: true,
-                message: "get all product thanh cong",
+                message: "get all category thanh cong",
                 data: categories
             }
         } catch (err) {
             console.log("err", err);
             return {
                 status: false,
-                message: "get all product that bai"
+                message: "get all category that bai"
             }
         }
     },

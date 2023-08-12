@@ -4,21 +4,6 @@ import fs from 'fs';
 
 
 export default {
-    // findAllProducts: async (req, res) => {
-    //     try {
-    //         let result = await productModel.findAllProducts();
-
-    //         return res.status(result.status ? 200 : 214).json(result);
-
-    //     } catch (err) {
-    //         return res.status(500).json(
-    //             {
-    //                 message: "Bad request products !"
-    //             }
-    //         )
-    //     }
-    // },
-
     //search
     findAllProducts: async function (req, res) {
 
@@ -38,9 +23,9 @@ export default {
             })
         }
     },
-    findByCategory: async function (req, res) {
+    findByCategoryId: async function (req, res) {
         try {
-            let result = await productModel.findByCategory(parseInt(req.params.category_id));
+            let result = await productModel.findByCategoryId(parseInt(req.params.category_id));
 
             return res.status(200).json({
                 message: result.message,
