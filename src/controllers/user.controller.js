@@ -124,7 +124,8 @@ export default {
                 return res.status(token ? 200 : 314).json(
                     {
                         message: token ? "Login thành công!" : "Server bảo trì!",
-                        token
+                        token,
+                        userId: modelRes.data.id
                     }
                 )
             }

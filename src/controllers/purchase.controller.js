@@ -6,16 +6,6 @@ import qs from 'qs'
 
 
 export default {
-    addToCart: async function (req, res) {
-        try {
-            let modelRes = await purchaseModel.addToCart(Number(req.params.user_id), req.body);
-            return res.status(modelRes.status ? 200 : 213).json(modelRes);
-        } catch (err) {
-            return res.status(500).json({
-                message: "Lỗi xử lý!"
-            })
-        }
-    },
     findCart: async function (req, res) {
         try {
             let modelRes = await purchaseModel.findCart(Number(req.params.user_id));
@@ -146,5 +136,20 @@ export default {
                     message: "Zalo sập!"
                 })
             });
-    }
+    },
+    addToCart: async function (req, res) {
+        console.log("da vao controller");
+        try {
+            req.body.quantity = Number(req.body.quantity);
+            console.log("req.body", req.body)
+            req.body.product_id = Number(req.body.product_id);
+            let modelRes = await purchaseModel.addToCart(Number(req.params.user_id), req.body);
+            console.log("modelRes", modelRes)
+            return res.status(modelRes.status ? 200 : 213).json(modelRes)
+        } catch (err) {
+            return res.status(500).json({
+                message: "Lỗi controller!"
+            })
+        }
+    },
 }
