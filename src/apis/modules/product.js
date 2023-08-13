@@ -20,5 +20,6 @@ router.get("/:id", productController.findById);
 router.post("/", productUpload.array('imgs'), productController.create);
 router.get("/", productController.findAllProducts);
 router.get("/:category/:category_id", productController.findByCategoryId);
+router.patch("/:productId", productUpload.single('avatar'), productController.update);
 
 export default router;

@@ -32,6 +32,31 @@ export default {
             }
         }
     },
+    findMany: async function () {
+        try {
+            let receipts = await prisma.receipts.findMany({
+                include: {
+                    users: true,
+                    receipt_details: true,
+                    receipt_details: {
+                        include: {
+                            product: true,
+                        }
+                    }
+                }
+            })
 
-
+            return {
+                status: true,
+                message: "ok!",
+                data: receipts
+            }
+        } catch (err) {
+            console.log("err", err)
+            return {
+                status: false,
+                message: "Lỗi model!"
+            }
+        }
+    },
 }

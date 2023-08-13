@@ -181,7 +181,11 @@ export default {
     },
     findAllUsers: async () => {
         try {
-            let users = await prisma.users.findMany()
+            let users = await prisma.users.findMany({
+                where: {
+                    role: "USER"
+                }
+            })
             return {
                 message: "get all user thanh cong",
                 data: users
@@ -194,4 +198,5 @@ export default {
             }
         }
     },
+
 }

@@ -118,4 +118,27 @@ export default {
             }
         }
     },
+    update: async (productId, data) => {
+        try {
+            let product = await prisma.products.update({
+                where: {
+                    id: productId
+                },
+                data: {
+                    ...data
+                }
+            })
+
+            return {
+                status: true,
+                message: "Update thành công!",
+                data: product
+            }
+        } catch (err) {
+            return {
+                status: false,
+                message: "Lỗi gì đó!"
+            }
+        }
+    },
 }
