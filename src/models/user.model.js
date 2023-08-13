@@ -178,5 +178,20 @@ export default {
             }
         }
 
-    }
+    },
+    findAllUsers: async () => {
+        try {
+            let users = await prisma.users.findMany()
+            return {
+                message: "get all user thanh cong",
+                data: users
+            }
+        } catch (err) {
+            console.log("err", err);
+            return {
+                status: false,
+                message: "get all user that bai"
+            }
+        }
+    },
 }

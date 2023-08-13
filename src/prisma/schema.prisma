@@ -79,8 +79,8 @@ model receipts {
     create_at       DateTime          @default(now())
     update_at       DateTime          @default(now())
     receipt_details receipt_details[]
-    users           users?            @relation(fields: [usersId], references: [id])
-    usersId         Int?
+    users           users?            @relation(fields: [user_id], references: [id])
+    user_id         Int?
 }
 
 model receipt_details {

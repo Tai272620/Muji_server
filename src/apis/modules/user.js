@@ -13,5 +13,6 @@ router.get('/resend', authencation.checkResendEmail, userController.resend)
 router.post('/change-password', authencation.checkChangePassword, userController.changePassword)
 router.get('/change-password-confirm/:token', userController.changePasswordConfirm)
 router.post('/', userController.create)
+router.get('/', userController.findAllUsers)
 
 export default router;

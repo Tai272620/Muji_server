@@ -242,6 +242,20 @@ export default {
         }
 
     },
+    findAllUsers: async (req, res) => {
+        try {
+            let modelRes = await userModel.findAllUsers();
+
+            return res.status(modelRes.status ? 200 : 214).json(modelRes)
+
+        } catch (err) {
+            return res.status(500).json(
+                {
+                    message: "Bad request products !"
+                }
+            )
+        }
+    },
     // findById: async (req, res) => {
     //     let update_at = await userModel.findById()
 
