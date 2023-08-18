@@ -87,7 +87,7 @@ export default {
         try {
             let modelRes = await userModel.confirm(decode)
 
-            res.status(modelRes.status ? 200 : 413).json(modelRes)
+            res.status(modelRes.status ? 200 : 413).send("Confirm Email Success!")
 
         } catch (err) {
             return res.status(500).json(
